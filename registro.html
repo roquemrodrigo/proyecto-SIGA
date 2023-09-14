@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es">
+	<head>
+	  <meta charset="UTF-8" />	
+	  <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
+          <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+          <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">	
+	  <title>Registros de canciones</title>
+	</head>
+	<body>
+	  <div>
+	 	<p>Registro de canciones</p>
+		
+		<img src="user_icon.png" width="100px" height="100px"/>
+		<!--	<img src="https://www.deskidea.com/blog/wp-content/uploads/2019/01/cd-o-dvd.jpg" width="100px" height="100px" />-->
+	     <form action="/guardar-beat" method="POST">
+		<p>Link musica: &nbsp; <input type="text" width="150px" name="URL_MUSICA"/></p>
+		<p>Nombre del Beat: &nbsp; <input type="text" width="150px" name="NOMBRE_BEAT"/></p>
+		<p>DJ Compositor: &nbsp; <input type="text" width="150px" name="NOMBRE_DJ"/></p>
+		<p>Tipo de Beat (Tipo,genero): &nbsp; <input type="text" width="150px" name="TIPO_BEAT"/></p>
+		<p>Descripción: &nbsp; <textarea rows="5" cols="50" name="DESCRIPCION"></textarea></p>	
+
+		<!--<input type="submit" name="GUARDAR" value="Guardar" />-->
+	      </form>
+	  </div>
+
+
+
+
+
+	</body>
+
+</html>
+
+<script type="text/javascript">
+ function guardarAjax(){
+ // alert("Hola vamos a llamar a go.")
+ //let post = JSON.stringify(postObj)
+
+ const url = "http://localhost:8586/guardar-beat-json";
+
+ let xhr = new XMLHttpRequest();
+
+ xhr.open('POST', url, true);
+
+ xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
+
+ xhr.send();
+ //xhr.responseType='json';
+ xhr.onload = function () {
+
+    if(xhr.status === 201) {
+
+        console.log("Post successfully created!");
+        //console.log(xhr.response.message);
+        console.log(JSON.parse(xhr.response).message)
+    }
+
+ }
+ 
+ }
+
+</script>
